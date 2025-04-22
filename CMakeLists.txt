@@ -4,7 +4,7 @@ project(reck_project)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_compile_options("-DDEBUG")
+# add_compile_options("-DDEBUG")
 add_compile_options("-O3" "-ggdb" "-Wall" "-Wextra")
 include_directories(include)
 

@@ -8,7 +8,6 @@
 #include <iostream>
 #include <mutex>
 #include <thread>
-#include <cstring>
 
 namespace RECK {
 
@@ -55,10 +54,22 @@ class debug_lock {
     }
 
 #ifdef DEBUG
+template <typename T>
+std::ostream &operator<<(std::ostream &os, const std::vector<T> &vec) {
+    os << "[";
+    for (size_t i = 0; i < vec.size(); ++i) {
+        os << vec[i];
+        if (i < vec.size() - 1) {
+            os << ", ";
+        }
+    }
+    os << "]";
+    return os;
+}
 #define debug_msg(out_format)                                                                                     \
     {                                                                                                             \
         std::unique_lock internal_debug_lock(::RECK::debug_lock::get_lock());                                     \
-        std::cout << std::dec << ::RECK::time_stamp() << " [" << ::RECK::file_name(__FILE__) << ":" << __LINE__   \
+        std::cerr << std::dec << ::RECK::time_stamp() << " [" << ::RECK::file_name(__FILE__) << ":" << __LINE__   \
                   << "] [" << __func__ << "] [" << std::this_thread::get_id() << "] " << out_format << std::endl; \
     }
 #else

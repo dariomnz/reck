@@ -19,10 +19,10 @@ class defer_impl {
     F defer_function;
 };
 
-}  // namespace defer
+}  // namespace
 
 #define __DEFER__JOIN(x, y)    x##y
 #define __DEFER_JOIN(x, y)     __DEFER__JOIN(x, y)
 #define __DEFER_UNIQUE_NAME(x) __DEFER_JOIN(x, __LINE__)
 
-#define defer(lambda__) [[maybe_unused]] const auto &__DEFER_UNIQUE_NAME(defer_object) = ::defer_impl([&]() lambda__)
+#define defer(lambda__)        [[maybe_unused]] const auto __DEFER_UNIQUE_NAME(defer_object) = ::defer_impl([&]() lambda__)

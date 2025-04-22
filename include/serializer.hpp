@@ -41,9 +41,11 @@ class serializer {
     };
 
    public:
-    static ssize_t read_serialized_file(const std::string_view& file_path);
+    static ssize_t restore_serialized_file(const std::string_view& file_path);
     static std::vector<mdata> read_serialized_mdata(const std::string_view& file_path);
+    static ssize_t make_checkpoint(const std::string_view& file_path);
 
+    // This need to be called in another process diferent to pid
     static ssize_t dump_serialized_file(pid_t pid, const std::string_view& file_path);
 };
 

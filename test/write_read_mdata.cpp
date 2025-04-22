@@ -9,7 +9,7 @@
 using namespace RECK;
 
 int main(void) {
-    std::string file_path = "/tmp/dump_data.reck";
+    std::string file_path = "/tmp/dump_data_w_r_mdata.reck";
 
     pid_t pid = fork();
     assert(pid != -1);
